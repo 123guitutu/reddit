@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import Share from '@/components/icon/share';
 import { ArrowDownOutlined, ArrowsAltOutlined, ArrowUpOutlined, CloseOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { BackTop, Col, Row } from 'antd';
@@ -9,10 +10,11 @@ import styles from './index.less'
 import avatar from '../../assets/avatar.png'
 import { fetchListDetail } from '../list/service';
 import { DataModel } from '../list/data';
+import { millisecondToDHMS } from '@/utils/utils';
 
 
 interface DetailProps {
-  id: number
+  id: string
 }
 
 const Detail: React.FC<DetailProps> = props => {
@@ -22,8 +24,13 @@ const Detail: React.FC<DetailProps> = props => {
   const [scrollTop, setScrollTop] = useState<number>(0)
 
   const loadDetail = async () => {
-    const res = await fetchListDetail({ id })
-    setDetailInfo(res)
+    // const res = await fetchListDetail({ id })
+    // setDetailInfo(res)
+    const item = localStorage.getItem('item')
+
+    if (item) {
+      setDetailInfo(JSON.parse(item))
+    }
   }
 
   useEffect(() => {
@@ -55,7 +62,7 @@ const Detail: React.FC<DetailProps> = props => {
               <ArrowUpOutlined style={{ fontSize: '18px', color: '#d7dadc', marginLeft: '6px', cursor: 'pointer' }} />
               <div className={styles.num}>
                 {
-                  detailInfo?.numRecommend
+                  detailInfo?.num_crossposts
                 }
               </div>
               <ArrowDownOutlined style={{ fontSize: '18px', color: '#d7dadc', marginRight: '6px', cursor: 'pointer' }} />
@@ -83,7 +90,7 @@ const Detail: React.FC<DetailProps> = props => {
                       <ArrowUpOutlined style={{ fontSize: '20px', color: '#999' }} />
                     </div>
                     <div className={styles.recommend}>
-                      {detailInfo?.numRecommend}
+                      {detailInfo?.num_crossposts}
                     </div>
                     <div className={styles.downArrow}>
                       <ArrowDownOutlined style={{ fontSize: '20px', color: '#999' }} />
@@ -98,8 +105,8 @@ const Detail: React.FC<DetailProps> = props => {
                         </span>
                       </div>
                       <div className={styles.item2}>
-                        Posted by <span className={styles.info}>{detailInfo?.authorFullname}</span>
-                        <span className={styles.info}>{detailInfo?.created} hours ago</span>
+                        Posted by <span className={styles.info}>{detailInfo?.author_fullname}</span>
+                        <span className={styles.info}>{millisecondToDHMS(detailInfo?.created)} hours ago</span>
                       </div>
                     </div>
                     <div className={styles.line2}>
@@ -250,7 +257,7 @@ const Detail: React.FC<DetailProps> = props => {
                       <div className={styles.btnItem}>
                         <Comment color="#878A8C" width="16px" height="16px" />
                         <div className={styles.btnTxt}>
-                          {detailInfo?.numComments} comments
+                          {detailInfo?.num_comments} comments
                         </div>
                       </div>
                       <div className={styles.btnItem}>

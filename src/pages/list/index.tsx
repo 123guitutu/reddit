@@ -31,7 +31,7 @@ const List: React.FC<ListProps> = props => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentNav, setCurrentNav] = useState<string>('Hot');
   const [isShowDetail, setIsShowDetail] = useState<boolean>(false);
-  const [id, setId] = useState<number>(0);
+  const [id, setId] = useState<string>('');
   const [after, setAfter] = useState<string>('');
 
   const callback = () => { }
@@ -118,9 +118,10 @@ const List: React.FC<ListProps> = props => {
   }
 
   const jumpToDetail = (item: DataModel) => {
-    router.push(`/list/detail?id=${item.key}`)
+    router.push(`/list/detail?id=${item.id}`)
     setIsShowDetail(true)
-    setId(item.key)
+    setId(item.id)
+    localStorage.setItem('item', JSON.stringify(item))
     document.body.style.overflowY = 'hidden'
   }
 
@@ -162,9 +163,8 @@ const List: React.FC<ListProps> = props => {
                     initialLoad={false}
                   >
                     {
-                      list.map(item => <div key={item.data.id} onClick={() => jumpToDetail(item)}>
+                      list.map(item => <div key={item.data.id} onClick={() => jumpToDetail(item.data)}>
                         <ListItem
-
                           title={item.data.title}
                           authorFullname={item.data.author_fullname}
                           created={item.data.created}

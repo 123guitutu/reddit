@@ -12,7 +12,7 @@ export async function fetchList(params: TableListParams) {
   type ResModel = ListData;
   let res: ResModel | undefined;
   try {
-    res = await request<ResModel>('r/php/search.json', {
+    res = await request<ResModel>('/r/php/search.json', {
       method: 'GET',
       params,
     });

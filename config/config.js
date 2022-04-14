@@ -135,7 +135,7 @@ export default {
     '/r/php/': {
       // target: 'http://192.168.6.31:8087/hy/',
       // target: 'http://localhost:8000',
-      target: 'https://www.reddit.com/',
+      target: 'https://www.reddit.com',
       changeOrigin: true,
       pathRewrite: {
         '^/r/php': '',
