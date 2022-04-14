@@ -132,13 +132,13 @@ export default {
   },
   chainWebpack: webpackPlugin,
   proxy: {
-    '/api/': {
+    '/r/php/': {
       // target: 'http://192.168.6.31:8087/hy/',
-      target: 'https://www.reddit.com',
-      // target: 'http://47.111.79.118:9188/hy/',
+      // target: 'http://localhost:8000',
+      target: 'https://www.reddit.com/',
       changeOrigin: true,
       pathRewrite: {
-        '^/hy': '',
+        '^/r/php': '',
       },
     },
   },

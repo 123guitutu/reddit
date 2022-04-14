@@ -14,22 +14,23 @@ export interface BaseModel<T> {
   status: string;
 }
 
-// export interface TableListParams {
-//   q?: string;
-//   limit: number;
-//   after: string;
-// }
+export interface TableListParams {
+  q?: string;
+  limit?: number;
+  after?: string;
+  sort?: string;
+}
 
-export type TableListParams = {
-  status?: string;
-  name?: string;
-  desc?: string;
-  key?: number;
-  pageSize?: number;
-  current?: number;
-  filter?: Record<string, any[]>;
-  sorter?: string;
-};
+// export type TableListParams = {
+//   status?: string;
+//   name?: string;
+//   desc?: string;
+//   key?: number;
+//   pageSize?: number;
+//   current?: number;
+//   filter?: Record<string, any[]>;
+//   sorter?: string;
+// };
 
 // export interface BaseResponse<T> {
 //   success: boolean;

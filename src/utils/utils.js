@@ -40,3 +40,42 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
 export function goBack() {
   router.goBack();
 }
+
+
+// 毫秒数转换成天时分秒
+export const millisecondToDHMS = (m, isShowSeconds = true) => {
+  const days = Math.floor(m / (24 * 3600 * 1000));
+
+  const leave1 = m % (24 * 3600 * 1000); // 计算天数后剩余的毫秒数
+  const hours = Math.floor(leave1 / (3600 * 1000));
+
+  const leave2 = leave1 % (3600 * 1000); // 计算小时数后剩余的毫秒数
+  const minutes = Math.floor(leave2 / (60 * 1000));
+  let seconds;
+  if (isShowSeconds) {
+    const leave3 = leave2 % (60 * 1000); // 计算分钟数后剩余的毫秒数
+    seconds = Math.round(leave3 / 1000);
+  } else {
+    seconds = 0;
+  }
+
+
+  // let timeStr = '';
+  // if (days > 0) {
+  //   timeStr +=  days + "天" + hours + "小时" + minutes + "分钟" + (seconds ? (seconds + '秒') : '');
+  // }
+
+  // if (days === 0 && hours > 0) {
+  //   timeStr +=  hours + "小时" + minutes + "分钟" + (seconds ? (seconds + "秒") : '');
+  // }
+
+  // if (days === 0 && hours === 0 && minutes > 0) {
+  //   timeStr +=  minutes + "分钟" + (seconds ? (seconds + "秒") : '');
+  // }
+
+  // if (days === 0 && hours === 0 && minutes === 0 && seconds > 0) {
+  //   timeStr +=  seconds ? (seconds + '秒') : '';
+  // }
+
+  return hours
+}

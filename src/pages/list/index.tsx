@@ -12,7 +12,7 @@ import Detail from '../detail'
 
 import styles from './index.less'
 import { fetchList } from './service';
-import { DataModel } from './data';
+import { DataModel, DataModelWrap } from './data';
 // import Detail from '../detail';
 
 const { TabPane } = Tabs;
@@ -23,56 +23,58 @@ interface ListProps {
 
 const List: React.FC<ListProps> = props => {
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const [list, setList] = useState<DataModel[]>([]);
-  const [tempParams, setTempParams] = useState<{ current: number, total: number }>({
-    current: 1,
-    total: -1,
-  });
+  const [list, setList] = useState<DataModelWrap[]>([]);
+  // const [tempParams, setTempParams] = useState<{ current: number, total: number }>({
+  //   current: 1,
+  //   total: -1,
+  // });
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentNav, setCurrentNav] = useState<string>('');
+  const [currentNav, setCurrentNav] = useState<string>('Hot');
   const [isShowDetail, setIsShowDetail] = useState<boolean>(false);
   const [id, setId] = useState<number>(0);
-
+  const [after, setAfter] = useState<string>('');
 
   const callback = () => { }
 
   const loadScrollList = async (page: number, tempCurrentNav: string) => {
+    console.log(tempCurrentNav, currentNav)
     let sorter = ''
-    const nav = !tempCurrentNav ? currentNav : tempCurrentNav
-    if (nav === 'New') {
-      sorter = 'New'
-    } else if (nav === 'Top') {
-      sorter = 'Top'
+    let nav = ''
+    const obj: any = {}
+    if (!tempCurrentNav) {
+      nav = currentNav
+      obj.after = after
     } else {
-      sorter = 'Hot'
+      nav = tempCurrentNav
+    }
+    if (nav === 'New') {
+      sorter = 'new'
+    } else if (nav === 'Top') {
+      sorter = 'top'
+    } else {
+      sorter = 'hot'
     }
 
-    if (tempParams.total === 0 || (tempParams.total !== -1 &&
-      page + 1 > Math.ceil(tempParams.total / 10))) {
+    if (after === null) {
       setHasMore(false)
-      setTempParams({
-        current: 1,
-        total: -1,
-      })
     } else {
       const res = await fetchList({
-        pageSize: 10,
-        current: page + 1,
-        sorter,
+        q: 'cat',
+        limit: 10,
+        ...obj,
+        sort: sorter,
       });
       setLoading(false)
       if (res) {
+        console.log(res)
         if (res.data) {
-          if (page === 0) {
-            setList(res.data)
+          if (tempCurrentNav) {
+            setList(res.data.children)
           } else {
-            setList(list.concat(res.data))
+          setList(list.concat(res.data.children))
           }
         }
-        setTempParams({
-          current: res.current ? res.current : 1,
-          total: res.total ? res.total : -1,
-        });
+        setAfter(res.data.after)
       }
     }
   }
@@ -110,6 +112,7 @@ const List: React.FC<ListProps> = props => {
   const handleSelectedNav = (name: string) => {
     setLoading(true)
     setHasMore(true)
+    setAfter('')
     setCurrentNav(name)
     loadScrollList(0, name)
   }
@@ -159,14 +162,14 @@ const List: React.FC<ListProps> = props => {
                     initialLoad={false}
                   >
                     {
-                      list.map(item => <div key={item.key} onClick={() => jumpToDetail(item)}>
+                      list.map(item => <div key={item.data.id} onClick={() => jumpToDetail(item)}>
                         <ListItem
 
-                          title={item.title}
-                          authorFullname={item.authorFullname}
-                          created={item.created}
-                          numComments={item.numComments}
-                          numRecommend={item.numRecommend}
+                          title={item.data.title}
+                          authorFullname={item.data.author_fullname}
+                          created={item.data.created}
+                          numComments={item.data.num_comments}
+                          numCrossposts={item.data.num_crossposts }
                         />
                       </div>)
                     }

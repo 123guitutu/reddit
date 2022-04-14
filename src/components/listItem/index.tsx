@@ -4,6 +4,7 @@ import styles from './index.less';
 
 import Comment from '@/components/icon/comment'
 import Share from '../icon/share';
+import { millisecondToDHMS } from '@/utils/utils';
 
 
 interface ListItemProps {
@@ -11,11 +12,11 @@ interface ListItemProps {
   authorFullname: string;
   created: number;
   numComments: number;
-  numRecommend: number;
+  numCrossposts: number;
 }
 
 const ListItem: React.FC<ListItemProps> = props => {
-  const { title, authorFullname, created, numComments, numRecommend } = props
+  const { title, authorFullname, created, numComments, numCrossposts } = props
 
   return (
     <div className={styles.listItem}>
@@ -24,7 +25,7 @@ const ListItem: React.FC<ListItemProps> = props => {
           <ArrowUpOutlined style={{ fontSize: '20px', color: '#999' }} />
         </div>
         <div className={styles.recommend}>
-          {numRecommend}
+          {numCrossposts}
         </div>
         <div className={styles.downArrow}>
           <ArrowDownOutlined style={{ fontSize: '20px', color: '#999' }} />
@@ -35,7 +36,7 @@ const ListItem: React.FC<ListItemProps> = props => {
           {title}
         </div>
         <div className={styles.from}>
-          Posted by <span>{authorFullname}</span> <span>{created} hours ago</span>
+          Posted by <span>{authorFullname}</span> <span>{millisecondToDHMS(created)} hours ago</span>
         </div>
         <div className={styles.btns}>
           <div className={styles.btnItem}>
