@@ -154,7 +154,7 @@ const List: React.FC<ListProps> = props => {
                     loadMore={loadScrollList}
                     loader={
                       <div className="loader" key={0}>
-                        <LoadingOutlined style={{ marginRight: '10px' }} />加载中
+                        <LoadingOutlined style={{ marginRight: '10px' }} />loading...
                       </div>
                     }
                     useWindow // ****将滚动侦听器添加到窗口，或者添加组件的parentNode****
