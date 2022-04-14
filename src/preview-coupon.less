@@ -1,0 +1,140 @@
+.testlalal {
+  :global {
+    .ant-modal-content{
+      background-color: #f0f6f5;
+    }
+  }
+  .area-title {
+    margin-top: 24px;
+    padding: 0 0 10px 0;
+    font-size: 24px;
+  }
+  .my-coupon-card {
+    background-color: white;
+    width: 750px;
+    position: relative;
+    padding: 13px 16px 0 40px;
+    margin-right: auto;
+    margin-left: auto;
+  
+    .fix-max-txt {
+      padding: 7px 10px;
+      background-color: #FEF2F1;
+      border-radius: 0 0 10px 0;
+      color: #CE342C;
+      font-size: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      width: 104px;
+    }
+  
+    .copon-name {
+      text-align: right;
+      font-size: 24px;
+      color: #333;
+      line-height: 33px;
+    }
+  
+    .info-row {
+      background-position: right;
+      background-size: 110px;
+      background-repeat: no-repeat;
+    }
+  
+    .info-txt {
+      color: #CE342C;
+      // height: 78px;
+      .yuan-unit {
+        font-size: 48px;
+      }
+      .discount-amount {
+        font-size: 68px;
+      }
+      .percent-unit {
+        font-size: 26px;
+      }
+    }
+  
+    .period {
+      color: #999999;
+      font-size: 21px;
+    }
+  
+    .cust-rule {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #999;
+      font-size: 21px;
+      padding-bottom: 30px;
+      padding-top: 10px;
+      .rule-btn {
+        color: #666;
+      }
+    }
+  
+    .btn {
+      position: relative;
+      padding: 25px;
+      margin: 0 -16px 0 -40px;
+      text-align: center;
+      color: #26B597;
+      font-size: 28px;
+      line-height: 40px;
+      border-top: 1PX dotted #eee;
+      box-sizing: border-box;
+      &.change {
+        color: #26B597 !important; 
+      }
+      .circle {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: -15px;
+        background-color: #f0f6f5;
+        border-radius: 100%;
+        &.left-circle {
+          left: -15px;
+        }
+        &.right-circle {
+          right: -15px;
+        }
+      }
+      Button {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+      }
+    }
+  
+    &.inactive {
+      Text {
+        color: #999 !important;
+      }
+      View {
+        color: #999 !important;
+      }
+      .fix-max-txt {
+        background-color: #F2F2F2;
+      }
+    }
+    &.change {
+      .rule-btn {
+        color: #666 !important;
+      }
+    }
+  }
+
+  .rull_container {
+    background-color: white;
+    width: 375px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

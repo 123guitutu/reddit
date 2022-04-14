@@ -1,0 +1,57 @@
+.listItem {
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-top: 4px;
+  .left {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255, .8);
+    .upArrow {}
+
+    .recommend {
+      color: rgba(26, 26, 27, 1);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .downArrow {}
+  }
+
+  .right {
+    margin-left: 10px;
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #222222;
+      word-wrap: break-word;
+    }
+
+    .from {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: rgb(120, 124, 126);
+      margin-bottom: 10px;
+    }
+
+    .btns {
+      display: flex;
+      align-items: center;
+      .btnItem {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        .btnTxt {
+          margin-left: 6px;
+        }
+      }
+    }
+  }
+}

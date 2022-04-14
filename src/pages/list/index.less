@@ -1,0 +1,64 @@
+.list {
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 208px;
+    background-image: url(../../assets/banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .title {
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 512px;
+      height: 176px;
+      background-image: url(../../assets/title.png);
+    }
+  }
+
+  .tabs {
+    :global {
+      .ant-tabs-bar {
+        padding-left: 28px;
+        background: #fff;
+      }
+      .ant-tabs-tab {
+        color: #7c7c7c;
+        padding: 6px 16px;
+      }
+      .ant-tabs-tab-active {
+        color: #1c1c1c;
+      }
+      .ant-tabs-ink-bar {
+        background-color: #8ab4c8
+      }
+    }
+    .posts {
+      padding: 10px 20px;
+    }
+  }
+
+  .backBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 300px;
+    width: 128px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: unset;
+    font-family: Noto Sans,Arial,sans-serif;
+    font-size: 14px;
+    background-color: #8ab4c8;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+}
